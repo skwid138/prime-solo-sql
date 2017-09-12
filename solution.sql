@@ -12,22 +12,20 @@ SELECT * FROM syntax_practice WHERE transactions_attempted > 8;
 
 -- Get the username and account balance of the 3 users with the highest balances, sort highest to lowest balance. NOTE: Research LIMIT
 -- not working
-SELECT * FROM syntax_practice MAX(account_balance) LIMIT 3;
-SELECT * FROM syntax_practice ORDER BY MAX(account_balance) ASC LIMIT 3 ;
+SELECT username, account_balance FROM syntax_practice ORDER BY account_balance DESC LIMIT 3 ;
 
 -- Get the username and account balance of the 3 users with the lowest balances, sort lowest to highest balance.
 -- Not Working
-SELECT * FROM syntax_practice MIN(account_balance) LIMIT 3;
+SELECT username, account_balance FROM syntax_practice ORDER BY account_balance ASC LIMIT 3;
 
 -- Get all users with account balances that are more than $100.
-SELECT * FROM syntax_practice
+SELECT * FROM syntax_practice WHERE account_balance > 100;
 
 -- Add a new record.
--- Untested
 INSERT INTO syntax_practice(username, city, transactions_completed, transactions_attempted, account_balance)
-VALUES('hunter', 0, 0, 666.00);
+VALUES('hunter', 'Mineapolis' 0, 0, 666.00);
 
 
 -- The bank is losing money in Miami and Phoenix and needs to unload low transaction customers: Delete users that reside in miami OR phoenix and have completed fewer than 5 transactions.
 -- untested
-DELETE * FROM syntax_practice WHERE city=('miami') OR city=('phoenix') AND account_transactions < 5;
+DELETE * FROM syntax_practice WHERE city IN('miami', 'phoenix') AND transactions_completed < 5;
